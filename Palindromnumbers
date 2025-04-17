@@ -1,0 +1,11 @@
+class Solution(object):
+    def isPalindrome(self, x):
+       
+        if x < 0:
+            return False
+
+        original = str(x)
+        reversed_x = original[::-1]
+
+        return original == reversed_x
+        s = Solution()
