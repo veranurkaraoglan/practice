@@ -1,0 +1,47 @@
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution(object):
+    def swapPairs(self, head):
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+
+        while head and head.next:
+            first = head
+            second = head.next
+
+            # Swap işlemi
+            prev.next = second
+            first.next = second.next
+            second.next = first
+
+            # İlerle
+            prev = first
+            head = first.next
+
+        return dummy.next
+
+# Test yardımcıları:
+def list_to_nodes(lst):
+    dummy = ListNode(0)
+    curr = dummy
+    for val in lst:
+        curr.next = ListNode(val)
+        curr = curr.next
+    return dummy.next
+
+def nodes_to_list(node):
+    result = []
+    while node:
+        result.append(node.val)
+        node = node.next
+    return result
+
+
+s = Solution()
+head = list_to_nodes([1,2,3,4])
+new_head = s.swapPairs(head)
+print(nodes_to_list(new_head))  # Beklenen çıktı: [2,1,4,3]
